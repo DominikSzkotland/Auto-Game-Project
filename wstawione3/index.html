@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <link rel="shortcut icon" href="Grafika/autoGameIco.png" type="image/x-icon">
+    <link rel="stylesheet" href="auto-game.css">
+    <title>Auto Game!</title>
+</head>
+
+<body onload="reset()">
+    <audio id="DashSoundEffect" src="Muzyka/DashSoundEffect.m4a" volume=1.0></audio>
+    <audio id="DashSoundEffect2" src="Muzyka/DashSoundEffect.m4a" volume=1.0></audio>
+    <audio id="crashSoundEffect" src="Muzyka/CrashSoundEffect.m4a" volume=1.0></audio>
+    <audio id="startSoundEffect" src="Muzyka/StartSoundEffect.m4a" volume=1.0></audio>
+    <audio id="switchSoundEffect" src="Muzyka/SwitchSoundEffect.m4a" volume=1.0></audio>
+    <audio id="MusicTheme" src="Muzyka/MusicTheme.mp3" loop volume=1.0></audio>
+
+    <div id="menuDad" class="see">
+        <div id="menu">
+            <div><p id="highscoreClock"></p></div>
+            <div id="minimenu">
+                <div id="settingsMenu">
+                    <div id="sleft" onclick="settingLeft()"><p class="sarrowsHtml">&#8592;</p></div>
+                    <div id="smid"><p id="settingName"></p></div>
+                    <div id="sright" onclick="settingRight()"><p class="sarrowsHtml">&#8594;</p></div>
+                </div>
+                <div id="choseCar">
+                    <div id="left" onclick="imageLeft()"><p class="arrowsHtml">&#8592;</p></div>
+                    <div id="mid0" class="hide"><img id="autoPhoto" src="" alt="auto photo"></div>
+                    <div id="mid1" class="hide">
+                        <!--<p>Changing difficulty available soon!</p>-->
+                        <div id="Easy" onclick="checkDiff"><p>Easy</p></div>
+                        <div id="Normal" onclick="checkDiff"><p>Normal</p></div>
+                        <div id="Hard" onclick="checkDiff"><p>Hard</p></div>
+                    </div>
+                    <div id="mid2" class="hide">
+                        <div id="musicON" onclick="checkVolu()"><p>Music ON</p></div>
+                        <div id="soundON" onclick="checkVolu()"><p>Sound ON</p></div>
+                    </div>
+                    <div id="right" onclick="imageRight()"><p class="arrowsHtml">&#8594;</p></div>
+                </div>
+            </div>
+            <div id="start" onclick="start()">START!</div>
+        </div>
+    </div>
+    <div id="scoreBox">
+        <p id="scoreClock"></p>
+    </div>
+    <div id="game">
+        <div id="gameleft"></div>
+        <div id="gameright"></div>
+        <div id="terrain1">
+
+        </div>
+        <div id="terrain2">
+
+        </div>
+        <div id="auto">
+        
+        </div>
+    </div>
+    <div id="startWindow">
+        <div id="startLogo"><p>Car Surfer!</p> <img src="Grafika/autoGameIco.png" alt="Game Logo"> </div>
+        <div id="startInWindow" onclick="startWindow()"><p>Start!</p></div>
+    </div>
+</body>
+</html>
+<script src="auto-game.js"></script>

@@ -1,0 +1,357 @@
+*
+{
+    box-sizing: border-box;
+    z-index: 1;
+    -webkit-touch-callout: none; /* iOS Safari                           */
+    -webkit-user-select: none; /* Safari                               */
+    -khtml-user-select: none; /* Konqueror HTML                       */
+    -moz-user-select: none; /* Firefox w przeszłości (stare wersje) */
+    -ms-user-select: none; /* Internet Explorer (>=10) / Edge      */
+    user-select: none; /* Aktualnie wspierane przez:           */
+                                     /* Chrome, Opera and Firefox            */
+}
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#menuDad
+{
+    z-index: 80;
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 375px);
+}
+#menu
+{
+    position: relative;
+    background-color: honeydew;
+    z-index: 100;
+    width: 1000px;
+    height: 750px;
+    min-width: 500px;
+    min-height: 360px;
+    border: 2px solid red;
+    left: -50%;
+    text-align: center;
+    vertical-align: middle;
+}
+#start
+{
+    position: absolute;
+    background-color: plum;
+    width: 150px;
+    top:calc(90%);
+    left:calc(50% - 75px);
+    font-size: 30px;
+    padding: 5px;
+}
+#start:hover
+{
+    background-color: rgb(220, 160, 180);
+    transition: 0.1s;
+}
+#choseCar,#settingsMenu
+{
+    border: 3px orange solid;
+    width:460px;
+    height: 306px;
+    background-color: lightgrey;
+    position: absolute;
+    top: calc(50% - 103px);
+    left: calc(50% - 230px);
+    clear: both;
+}
+#settingsMenu
+{
+    height: 100px;
+    top: calc(50% - 200px);
+}
+#left
+{
+    float: left;
+    width: 75px;
+    height: 300px;
+    
+}
+#left:hover
+{
+background-color: darkgrey;
+transition: 0.1s;
+}
+#right
+{
+    float: right;
+    width: 75px;
+    height: 300px;
+    
+}
+#right:hover
+{
+background-color: darkgrey;
+transition: 0.1s;
+}
+#sleft
+{
+    float: left;
+    width: 75px;
+    height: 100px;
+    
+}
+#sleft:hover
+{
+background-color: darkgrey;
+transition: 0.1s;
+}
+#sright
+{
+    float: right;
+    width: 75px;
+    height: 100px;
+    
+}
+#sright:hover
+{
+background-color: darkgrey;
+transition: 0.1s;
+}
+.arrowsHtml
+{
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 112.5px 0;
+}
+.sarrowsHtml
+{
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 20px 0;
+}
+#settingName
+{
+    margin:0;
+    padding-top: 25px;
+    font-size: 30px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#highscoreClock
+{
+    font-size:30px
+}
+#mid0,#mid1,#smid
+{
+    width: 300px;
+    height: 300px;
+    float: left;
+}
+#mid1>p
+{
+    font-size: 30px;
+}
+#smid
+{
+    height: 100px;
+}
+#autoPhoto
+{
+    display: block;
+    position: absolute;
+    width: 134px;
+    height: 200px;
+    top: calc(50% - 100px);
+    left: calc(50% - 67px);
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+#comingSoonText
+{
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+#game
+{
+    width: 50%;
+    height: 80%;
+    max-width: 800px;
+    max-height: 1000px;
+    min-width: 510px;
+    min-height: 600px;
+    border: 1px black solid;
+    margin: auto;
+    clear: both;
+    overflow: hidden;
+    
+}
+.see
+{
+    display: block;
+    transition: 0.2s;
+}
+.hide
+{
+    display: none;
+    transition: 0.2s;
+}
+#scoreBox
+{
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 50%;
+    height: 100px;
+    max-width: 800px;
+    max-height: 100px;
+    min-width: 510px;
+    min-height: 60px;
+    border: 1px black solid;
+    border-bottom: 0;
+    text-align: center;
+    vertical-align: middle
+    
+}
+#scoreClock
+{
+    margin:0;
+    padding-top: 3.5%;
+    font-size: 30px;
+    position: relative;
+    background-color: bisque;
+    width: 100%;
+    height: 100%;
+    
+    
+}
+#game
+{
+    position: relative;
+    width: 50%;
+    height: 80%;
+    max-width: 800px;
+    max-height: 1000px;
+    min-width: 510px;
+    min-height: 600px;
+    border: 1px black solid;
+    margin: auto;
+    clear: both;
+    overflow: hidden;
+}
+
+#terrain1
+{
+    
+    width: 56px;
+    height: 124px;
+    /*background-color: red;*/
+    background-image: url(Grafika/terrain_default.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    top:60%;
+    left: calc(20% - 28px);
+    float: left;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+#terrain2
+{
+    width: 56px;
+    height: 124px;
+    /*background-color: orange;*/
+    background-image: url(Grafika/terrain_default.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    top:60%;
+    left: calc(80% - 28px);
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+#auto
+{
+    width: 60px;
+    height: 90px;
+    background-image: url(Grafika/default_red.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    top: calc(70% - 90px);
+    left: calc(50% - 30px);
+    transition: 0.15s linear;
+    z-index: 10;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+#gameleft
+{
+    z-index: 25;
+    left: 0%;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+#gameright
+{
+    z-index: 25;
+    right: 0%;
+    float: right;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+#Easy
+{
+    font-size: 30px;
+    height: 100px;
+    
+}
+#Normal
+{
+    font-size: 30px;
+    height: 100px;
+}
+#Hard
+{
+    font-size: 30px;
+    height: 100px;
+}
+.zaznacz
+{
+    background-color: rgba(255,165,0,0.4);
+    border: 5px dotted orange;
+}/*
+#Easy>p,#Normal>p,#Hard>p
+{
+
+}*/
+
+@keyframes slide
+{
+    0%{top: -124px;}
+    100%{top: calc(100%)}
+}
+.slide
+{
+    animation: slide 0.8s linear infinite;   
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <link rel="stylesheet" href="auto-game.css">
+    <title>Auto Game!</title>
+</head>
+
+<body>
+    <div id="menuDad" class="see">
+        <div id="menu">
+            <div><p id="highscoreClock"></p></div>
+            <div id="minimenu">
+                <div id="settingsMenu">
+                    <div id="sleft" onclick="settingLeft()"><p class="sarrowsHtml">&#8592;</p></div>
+                    <div id="smid"><p id="settingName"></p></div>
+                    <div id="sright" onclick="settingRight()"><p class="sarrowsHtml">&#8594;</p></div>
+                </div>
+                <div id="choseCar">
+                    <div id="left" onclick="imageLeft()"><p class="arrowsHtml">&#8592;</p></div>
+                    <div id="mid0" class="hide"><img id="autoPhoto" src="" alt="auto photo"></div>
+                    <div id="mid1" class="hide">
+                        <p>Changing difficulty available soon!</p>
+                        <!--<div id="Easy"><p>Easy</p></div>
+                        <div id="Normal"><p>Normal</p></div>
+                        <div id="Hard"><p>Hard</p></div>-->
+                    </div>
+                    <div id="right" onclick="imageRight()"><p class="arrowsHtml">&#8594;</p></div>
+                </div>
+            </div>
+            <div id="start" onclick="start()">START!</div>
+        </div>
+    </div>
+    <div id="scoreBox">
+        <p id="scoreClock"></p>
+    </div>
+    <div id="game">
+        <div id="gameleft"></div>
+        <div id="gameright"></div>
+        <div id="terrain1">
+
+        </div>
+        <div id="terrain2">
+
+        </div>
+        <div id="auto">
+        
+        </div>
+    </div>
+    
+    
+</body>
+</html>
+<script src="auto-game.js"></script>
