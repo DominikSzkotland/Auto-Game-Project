@@ -757,3 +757,40 @@ function pickTerrain()
         }
     }
 }
+function preloadImage(url){
+    const img = new Image();
+    img.src = url;
+    return img
+  }
+  
+  function preloadImages() {
+    const images = []
+    for (var i = 0; i < arguments.length; i++) {
+      images[i] = preloadImage(arguments[i])
+    }
+    return images
+  }
+  const images = preloadImages(
+    "Grafika/terrain_default1.png",
+    "Grafika/terrain_default2.png",
+    "Grafika/thrashes_1.png",
+    "Grafika/thrashes_2.png",
+    "Grafika/tree_1.png",
+    "Grafika/tree_2.png",
+    "Grafika/tree_3.png",
+    "Grafika/default_blue.png",
+    "Grafika/default_red.png",
+    "Grafika/default_green.png",
+    "Grafika/default_yellow.png",
+    "Grafika/sharp_green.png",
+    "Grafika/sharp_orange.png",
+    "Grafika/sharp_red.png",
+    "Grafika/sharp_violet.png",
+    "Grafika/autoGameIcon.png",
+    "Grafika/autoGameIcon.ico",
+    "Muzyka/CrashSoundEffect.mp3",
+    "Muzyka/DashSoundEffect.mp3",
+    "Muzyka/MusicTheme.mp3",
+    "Muzyka/StartSoundEffect.mp3",
+    "Muzyka/SwitchSoundEffect.mp3"
+  )

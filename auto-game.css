@@ -457,7 +457,7 @@ transition: 0.1s;
 #musicON>p,#soundON>p
 {
     margin: 0;
-    position: absolute; 
+    position: absolute;
 }
 #musicON>p
 {
@@ -500,7 +500,7 @@ transition: 0.1s;
 .stripSlideEasy
 {
     animation-name: stripSlide;
-    animation-duration: 1s;
+    animation-duration: 0.95s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -1028,7 +1028,7 @@ transition: 0.1s;
     #musicON>p,#soundON>p
     {
         margin: 0;
-        position: relative; 
+        position: relative;
     }
     #musicON>p
     {
