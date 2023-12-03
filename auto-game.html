@@ -30,17 +30,21 @@
                 <div id="left" onclick="imageLeft()"><p class="arrowsHtml">&#8592;</p></div>
                 <div id="mid0" class="hide"><img id="autoPhoto" src="" alt="auto photo"></div>
                 <div id="mid1" class="hide">
-                    <div id="Easy" onclick="checkIt1()"><p>Easy</p></div>
-                    <div id="Normal" onclick="checkIt2()"><p>Normal</p></div>
-                    <div id="Hard" onclick="checkIt3()"><p>Hard</p></div>
+                    <div id="Easy" onclick="checkIt1Difficulty()"><p>Easy</p></div>
+                    <div id="Normal" onclick="checkIt2Difficulty()"><p>Normal</p></div>
+                    <div id="Hard" onclick="checkIt3Difficulty()"><p>Hard</p></div>
                 </div>
                 <div id="mid2" class="hide">
                     <div id="musicON">
-                        <p>Music<input type="range" name="MusicVolume" id="MusicVolume"></p>
+                        <p>Music<br><input type="range" name="MusicVolume" id="MusicVolume"></p>
                     </div>
                     <div id="soundON">
-                        <p>Sound<input type="range" name="SoundVolume" id="SoundVolume"></p>
+                        <p>Sound<br><input type="range" name="SoundVolume" id="SoundVolume"></p>
                     </div>
+                </div>
+                <div id="mid3" class="hide">
+                    <div id="Click" onclick="checkIt1Controls()"><p>Clicks</p></div>
+                    <div id="Swipe" onclick="checkIt2Controls()"><p>Swipes</p></div>
                 </div>
                 <div id="right" onclick="imageRight()"><p class="arrowsHtml">&#8594;</p></div>
             </div>

@@ -1,18 +1,27 @@
-//localStorage.clear()
-
+/**
+ * The function checks if the device supports touch events.
+ * @returns a boolean value. It returns true if the device supports touch events, and false if it does
+ * not.
+ */
+function isTouchDevice() 
+{
+    return !!('ontouchstart' in window || navigator.maxTouchPoints);
+};
+const isDeviceMobile = isTouchDevice()
 const terrain1 = document.getElementById("terrain1");
 const terrain2 = document.getElementById("terrain2");
 const menu = document.getElementById("menu");
-
-let score =0;
-let highScoreEasy=localStorage.getItem("highScoreEasy");
-let highScoreNormal=localStorage.getItem("highScoreNormal");
-let highScoreHard=localStorage.getItem("highScoreHard");
+let score = 0;
+let highScoreEasy = localStorage.getItem("highScoreEasy");
+let highScoreNormal = localStorage.getItem("highScoreNormal");
+let highScoreHard = localStorage.getItem("highScoreHard");
+let MobileControleType = MobileControleTypeReturn()
 let strip1 = document.getElementById("streetStrip1");
 let strip2 = document.getElementById("streetStrip2");
 let strip3 = document.getElementById("streetStrip3");
 let scoreClock=document.getElementById("scoreClock")
 let highscoreClock=document.getElementById("highscoreClock")
+const game = document.getElementById("game");
 let gameleft = document.getElementById("gameleft")
 let gameright = document.getElementById("gameright")
 scoreClock.innerHTML="Score: 0"
@@ -51,7 +60,6 @@ else
     }
 }
 SoundVolume.value = SoundVolumePack
-
 
 if(highScoreEasy!=null)
 {
@@ -104,6 +112,10 @@ else
 }
 
 setInterval(isHiden, 100)
+/**
+ * The start function initializes the game by resetting the terrain and auto positions, adjusting the
+ * difficulty of the game, adding collision detection, and hiding the menu.
+ */
 function start()
 {
 
@@ -117,7 +129,7 @@ function start()
     terrain2reset.style.left = "calc(80% - 40px)";
     terrain2reset.style.top = "-124px";
     autoreset.style.left = "calc(50% - 30px)";
-
+    updateControls()
     if(Difficulty() == "slideEasy")
     {
         strip1.classList.remove("stripSlideNormal")
@@ -171,6 +183,12 @@ function start()
     scoreClock.innerHTML="Score: 0";
     
 }
+/**
+ * The function `clickRL` checks if the startWindow element is hidden and then moves left or right
+ * based on the key pressed.
+ * @param event - The event parameter is an object that represents the event that triggered the
+ * function. In this case, it is likely a keyboard event, such as a key press.
+ */
 function clickRL(event)
 {
    
@@ -182,6 +200,13 @@ function clickRL(event)
         if(event.key==="d"){moveRight();}
     }
 }
+/**
+ * The function `clickW` checks if the start window is hidden and locked, and if so, it starts the game
+ * when the "ArrowUp" key or "w" key is pressed.
+ * @param event - The event parameter represents the event object that is passed to the clickW function
+ * when it is called. This object contains information about the event that triggered the function,
+ * such as the key that was pressed.
+ */
 function clickW(event)
 {
     if(startWindow.classList.contains("hide")&&startWindow.classList.contains("ghost"))
@@ -195,6 +220,10 @@ function clickW(event)
         if(event.key==="w"){startWindowBye()}
     }
 }
+/**
+ * The function checks if a menu element has the "hide" class and adds or removes event listeners
+ * accordingly.
+ */
 function isHiden()
 {
     if(menu.classList.contains("hide"))
@@ -208,10 +237,58 @@ function isHiden()
         document.addEventListener("keydown", clickW)           
     } 
 }
-    
-    gameleft.addEventListener("touchstart", moveLeft)
-    gameright.addEventListener("touchstart", moveRight)
+  
+    var initialX = null;
+  
+    /**
+     * The startTouch function captures the initial X coordinate of a touch event.
+     * @param e - The parameter "e" is an event object that contains information about the touch event
+     * that occurred.
+     */
+    function startTouch(e)
+    {
+        initialX = e.touches[0].clientX;
+    };
+  
+    /**
+     * The function `moveTouch` is used to detect the direction of a touch movement and call the
+     * appropriate functions `moveRight` or `moveLeft` based on the direction.
+     * @param e - The parameter "e" is an event object that represents the touch event. It contains
+     * information about the touch, such as the touch position and other details.
+     * @returns If the initialX variable is null, the function will return without performing any
+     * further actions.
+     */
+    function moveTouch(e) 
+    {
+        if (initialX === null) 
+        {
+            return;
+        }
 
+        var currentX = e.touches[0].clientX;
+        var diffX = initialX - currentX;
+
+            if(diffX < 0)
+            {
+                if(MobileControleTypeReturn() == "swipe")
+                {
+                    moveRight()
+                }
+            }
+            else if(diffX > 0)
+            {
+                if(MobileControleTypeReturn() == "swipe")
+                {
+                    moveLeft()
+                }
+            }
+        
+        initialX = null;
+        e.preventDefault();
+    };
+    /**
+     * The function updates the score and high score in a game and displays them on a web page.
+     */
     function functionScoreEasy()
     {
         score = score + 1;
@@ -224,6 +301,9 @@ function isHiden()
         scoreClock.innerHTML="Score: "+score
     }
 
+    /**
+     * The function updates the score and high score in a game and displays them on a web page.
+     */
     function functionScoreNormal()
     {
         score = score + 1;
@@ -236,6 +316,9 @@ function isHiden()
         scoreClock.innerHTML="Score: "+score
     }
 
+    /**
+     * The function updates the score and high score in a game and displays them on a webpage.
+     */
     function functionScoreHard()
     {
 
@@ -251,6 +334,10 @@ function isHiden()
     let dashSound = document.getElementById("DashSoundEffect")
     let dashSound2 = document.getElementById("DashSoundEffect2")
 
+    /**
+     * The function "moveLeft" moves an element with the id "auto" to the left by a certain amount
+     * based on the width of the element with the id "game".
+     */
     function moveLeft()
     {
         dashSound.play()
@@ -269,6 +356,10 @@ function isHiden()
 
 
     }
+    /**
+     * The function moveRight moves an element to the right within a game based on its current position
+     * and the width of the game.
+     */
     function moveRight()
     {
         dashSound2.play()
@@ -288,6 +379,10 @@ function isHiden()
 
     terrain1.addEventListener("animationiteration", drawPosition);
 
+    /**
+     * The function "drawPosition" randomly positions two elements on the screen and adjusts their
+     * opacity based on the selected difficulty level.
+     */
     function drawPosition()
     {
         pickTerrain()
@@ -342,6 +437,10 @@ function isHiden()
         
     }
     let crashSound = document.getElementById("crashSoundEffect")
+    /**
+     * The function `collisionCheck()` checks for collisions between the auto and the terrain elements
+     * in a game and performs certain actions if a collision occurs.
+     */
     function collisionCheck()
     {
         
@@ -427,23 +526,31 @@ function isHiden()
 
     }
 
-let settingOptions = ["Customization","Difficulty","Music and sound"]
+let settingOptions = ["Customization","Difficulty","Music and sound","Controls"]
+let isSettingOnlyMobile = [false,false,false,true]
 let settingName = document.getElementById("settingName")
 let settingNumber=0
 let mid = document.getElementById("mid"+settingNumber)
 mid.classList.remove("hide")
 mid.classList.add("see")
 settingName.innerHTML = settingOptions[settingNumber]
+/**
+ * The function "settingLeft" is used to navigate to the previous setting option and update the display
+ * accordingly.
+ */
 function settingLeft()
 {
     switchSoundEffect.play()
     mid.classList.remove("see")
     mid.classList.add("hide")
     settingNumber = settingNumber - 1
-    
     if(settingNumber<0)
     {
         settingNumber=settingOptions.length-1
+    }
+    if(isSettingOnlyMobile[settingNumber] == true && isDeviceMobile == false)
+    {
+        settingNumber = settingNumber - 1
     }
     settingName.innerHTML = settingOptions[settingNumber]
     if(settingNumber == 2)
@@ -468,6 +575,10 @@ function settingLeft()
     mid.classList.remove("hide")
     mid.classList.add("see")
 }
+/**
+ * The function "settingRight" is used to navigate through different settings options and update the
+ * display accordingly.
+ */
 function settingRight()
 {
     
@@ -482,6 +593,14 @@ function settingRight()
     if(settingNumber>settingOptions.length-1)
     {
         settingNumber=0
+    }
+    if(isSettingOnlyMobile[settingNumber] == true && isDeviceMobile == false)
+    {
+        settingNumber = settingNumber + 1
+        if(settingNumber>settingOptions.length-1)
+        {
+            settingNumber=0
+        }
     }
     settingName.innerHTML = settingOptions[settingNumber]
     if(settingNumber == 2)
@@ -531,10 +650,13 @@ else
     autoHtml.style.backgroundImage = 'url(Grafika/'+autoSkins[0]+'.png)'
     autoPhoto.src = 'Grafika/'+autoSkins[0]+'.png'
 }
+/**
+ * The function "imageLeft" is used to switch the background image and source of an HTML element to the
+ * previous image in an array of auto skins.
+ */
 function imageLeft()
 {
     switchSoundEffect.play()
-    /*localStorage.removeItem("iSkins")*/
     iSkins = iSkins - 1
     if(iSkins<0)
     {
@@ -544,6 +666,11 @@ function imageLeft()
     autoHtml.style.backgroundImage = 'url(Grafika/'+autoSkins[iSkins]+'.png)'
     autoPhoto.src = 'Grafika/'+autoSkins[iSkins]+'.png'
 }
+
+/**
+ * The function "imageLeft" is used to switch the background image and source of an HTML element to the
+ * previous image in an array of auto skins.
+ */
 function imageRight()
 {
     switchSoundEffect.play()
@@ -551,6 +678,7 @@ function imageRight()
     
     if(iSkins == "01")
     {
+        /*some issue with datatypes*/
         iSkins=1
     }
     if(iSkins>autoSkins.length-1)
@@ -563,6 +691,12 @@ function imageRight()
     autoPhoto.src = 'Grafika/'+autoSkins[iSkins]+'.png'
 }
 
+/**
+ * The function "reset" checks if a variable called "resetI" is stored in the browser's local storage,
+ * and if not, it sets the variable to 2 and reloads the page.
+ * @returns In the if statement, if resetI is null, the function returns false. Otherwise, if resetI is
+ * not null, the function does not have a return statement, so it implicitly returns undefined.
+ */
 function reset()
 {
     let resetI = localStorage.getItem("resetI")
@@ -579,11 +713,16 @@ function reset()
         
     }
 }
+/**
+ * The function "startWindowBye" sets the "startWindowLock" variable to false, adds the "ghost" class
+ * to the "startWindow" element, hides the "startWindow" element after a delay, and plays the
+ * "MusicTheme" audio.
+ */
 function startWindowBye()
 {
     startWindowLock = false;
     startWindow.classList.add("ghost")
-    
+    updateControls()
     setTimeout(function()
     {
         startWindow.classList.add("hide")
@@ -592,6 +731,10 @@ function startWindowBye()
     MusicTheme.play()
     
 }
+/**
+ * The function "volumeControle" is used to control the volume of music and sound effects in a web
+ * page, and it also saves the volume settings in the local storage.
+ */
 function volumeControle()
 {
     
@@ -613,9 +756,9 @@ function volumeControle()
     })
 }
 let Difficultylvl = localStorage.getItem("Difficultylvl")
-let DiffBlock1 = document.getElementById("Easy")
-let DiffBlock2 = document.getElementById("Normal")
-let DiffBlock3 = document.getElementById("Hard")
+let DiffBlock1Difficulty = document.getElementById("Easy")
+let DiffBlock2Difficulty = document.getElementById("Normal")
+let DiffBlock3Difficulty = document.getElementById("Hard")
 if(Difficultylvl == null)
 {
     localStorage.setItem("Difficultylvl", "slideNormal")
@@ -624,66 +767,157 @@ else
 {
     if(Difficultylvl == "slideEasy")
     {
-        DiffBlock1.classList.add("checkIt")
+        DiffBlock1Difficulty.classList.add("checkIt")
     }
     if(Difficultylvl == "slideNormal")
     {
-        DiffBlock2.classList.add("checkIt")
+        DiffBlock2Difficulty.classList.add("checkIt")
     }
     if(Difficultylvl == "slideHard")
     {
-        DiffBlock3.classList.add("checkIt")
+        DiffBlock3Difficulty.classList.add("checkIt")
     }
 }
 
 
-function checkIt1()
+/**
+ * The function checks if a certain class is present in an element, and if not, it adds the class to
+ * the element and updates the highscore display.
+ */
+function checkIt1Difficulty()
 {
-    if(DiffBlock1.classList.contains("checkIt"))
+    if(DiffBlock1Difficulty.classList.contains("checkIt"))
     {}
     else
     {
-        DiffBlock1.classList.remove("checkIt")
-        DiffBlock2.classList.remove("checkIt")
-        DiffBlock3.classList.remove("checkIt")
-        DiffBlock1.classList.add("checkIt")
+        DiffBlock1Difficulty.classList.remove("checkIt")
+        DiffBlock2Difficulty.classList.remove("checkIt")
+        DiffBlock3Difficulty.classList.remove("checkIt")
+        DiffBlock1Difficulty.classList.add("checkIt")
         localStorage.setItem("Difficultylvl","slideEasy")
         highscoreClock.innerHTML="Highscore: "+highScoreEasy+" - Easy"
     }
 }  
-function checkIt2()
+/**
+ * The function checks if a certain class is present in an element, and if not, it adds the class to
+ * the element and updates the highscore display.
+ */
+function checkIt2Difficulty()
 {  
-    if(DiffBlock2.classList.contains("checkIt"))
+    if(DiffBlock2Difficulty.classList.contains("checkIt"))
     {}
     else
     {
-        DiffBlock1.classList.remove("checkIt")
-        DiffBlock2.classList.remove("checkIt")
-        DiffBlock3.classList.remove("checkIt")
-        DiffBlock2.classList.add("checkIt")
+        DiffBlock1Difficulty.classList.remove("checkIt")
+        DiffBlock2Difficulty.classList.remove("checkIt")
+        DiffBlock3Difficulty.classList.remove("checkIt")
+        DiffBlock2Difficulty.classList.add("checkIt")
         localStorage.setItem("Difficultylvl","slideNormal")
         highscoreClock.innerHTML="Highscore: "+highScoreNormal+" - Normal"
     }
 }
-function checkIt3()
+/**
+ * The function checks if a certain class is present in an element, and if not, it adds the class to
+ * the element and updates the highscore display.
+ */
+function checkIt3Difficulty()
 {
-    if(DiffBlock3.classList.contains("checkIt"))
+    if(DiffBlock3Difficulty.classList.contains("checkIt"))
     {}
     else
     {
-        DiffBlock1.classList.remove("checkIt")
-        DiffBlock2.classList.remove("checkIt")
-        DiffBlock3.classList.remove("checkIt")
-        DiffBlock3.classList.add("checkIt")
+        DiffBlock1Difficulty.classList.remove("checkIt")
+        DiffBlock2Difficulty.classList.remove("checkIt")
+        DiffBlock3Difficulty.classList.remove("checkIt")
+        DiffBlock3Difficulty.classList.add("checkIt")
         localStorage.setItem("Difficultylvl","slideHard")
         highscoreClock.innerHTML="Highscore: "+highScoreHard+" - Hard"
     }
     
 }
+const DiffBlock1Controls = document.getElementById("Click")
+const DiffBlock2Controls = document.getElementById("Swipe")
+if(MobileControleType == null)
+{
+    checkIt1Controls()
+}
+/**
+ * The function updates the controls based on the type of mobile control selected.
+ */
+function updateControls()
+{
+    if(MobileControleTypeReturn() == "click")
+    {
+        game.removeEventListener("touchstart", startTouch, false);
+        game.removeEventListener("touchmove", moveTouch, false);
+        gameleft.addEventListener("touchstart", moveLeft)
+        gameright.addEventListener("touchstart", moveRight)
+        DiffBlock1Controls.classList.add("checkIt")
+    }
+    else if(MobileControleTypeReturn() == "swipe")
+    {
+        gameleft.removeEventListener("touchstart", moveLeft)
+        gameright.removeEventListener("touchstart", moveRight)
+        game.addEventListener("touchstart", startTouch, false);
+        game.addEventListener("touchmove", moveTouch, false);
+        DiffBlock2Controls.classList.add("checkIt")
+    }
+}
+/**
+ * The function checks if a certain class is present in an element, and if not, it adds the class to
+ * the element and updates the highscore display.
+ */
+function checkIt1Controls()
+{
+    if(DiffBlock1Controls.classList.contains("checkIt"))
+    {}
+    else
+    {
+        DiffBlock1Controls.classList.remove("checkIt")
+        DiffBlock2Controls.classList.remove("checkIt")
+        DiffBlock1Controls.classList.add("checkIt")
+        localStorage.setItem("MobileControleType","click")
+    }
+    
+}
+/**
+ * The function checks if a certain class is present in an element, and if not, it adds the class to
+ * the element and updates the highscore display.
+ */
+function checkIt2Controls()
+{
+    if(DiffBlock2Difficulty.classList.contains("checkIt"))
+    {}
+    else
+    {
+        DiffBlock1Controls.classList.remove("checkIt")
+        DiffBlock2Controls.classList.remove("checkIt")
+        DiffBlock2Controls.classList.add("checkIt")
+        localStorage.setItem("MobileControleType","swipe")
+    }
+    
+}
+/**
+ * The function Difficulty retrieves the value of the "Difficultylvl" key from the localStorage.
+ * @returns The value of the "Difficultylvl" key in the localStorage.
+ */
 function Difficulty()
 {
     return localStorage.getItem("Difficultylvl")
 }
+/**
+ * The function returns the value of the "MobileControleType" item stored in the browser's local
+ * storage.
+ * @returns the value of the "MobileControleType" key from the localStorage.
+ */
+function MobileControleTypeReturn()
+{
+    return localStorage.getItem("MobileControleType")
+}
+/**
+ * The function `pickTerrain` randomly selects two terrain images from an array and sets them as the
+ * background images for two elements.
+ */
 function pickTerrain()
 {
     let TerrainTable = ["terrain_default1","thrashes_1","thrashes_2","tree_1","tree_2","tree_3","terrain_default2"]
@@ -757,12 +991,23 @@ function pickTerrain()
         }
     }
 }
+/**
+ * The function `preloadImage` creates a new image object and sets its source to the specified URL.
+ * @param url - The `url` parameter is a string that represents the URL of the image that you want to
+ * preload.
+ * @returns an image object.
+ */
 function preloadImage(url){
     const img = new Image();
     img.src = url;
     return img
   }
   
+  /**
+   * The function `preloadImages` takes in a variable number of image URLs as arguments and returns an
+   * array of preloaded image objects.
+   * @returns The function `preloadImages` returns an array of preloaded images.
+   */
   function preloadImages() {
     const images = []
     for (var i = 0; i < arguments.length; i++) {
