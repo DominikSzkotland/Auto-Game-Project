@@ -886,7 +886,7 @@ function checkIt1Controls()
  */
 function checkIt2Controls()
 {
-    if(DiffBlock2Difficulty.classList.contains("checkIt"))
+    if(DiffBlock2Controls.classList.contains("checkIt"))
     {}
     else
     {
